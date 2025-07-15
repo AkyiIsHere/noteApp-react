@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-background text-white;
+}
+
+@layer components {
+  .btn {
+    @apply bg-secondary mx-auto block w-[80%] px-2 py-0.5 rounded hover:bg-accent hover:text-black text-center;
+  }
+}
+
+@theme {
+  --color-primary: #0b666a;
+  --color-secondary: #35a29f;
+  --color-accent: #97feed;
+  --color-background: #071952;
+}
