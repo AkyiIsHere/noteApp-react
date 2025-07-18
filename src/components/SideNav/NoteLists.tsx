@@ -1,4 +1,4 @@
-import type { Note } from "../types/Note";
+import type { Note } from "../../types/Note";
 
 type NoteListProps = {
   noteData: Note[];
