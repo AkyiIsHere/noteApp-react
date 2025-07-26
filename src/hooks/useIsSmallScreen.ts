@@ -10,7 +10,13 @@ export default function useIsSmallScreen(
 
   useEffect(() => {
     const resizeHandler = () => {
-      setIsSmallScreen(window.innerWidth <= breakpoint);
+      const matches = window.innerWidth <= breakpoint;
+      setIsSmallScreen((prev) => {
+        if (prev !== matches) {
+          return matches;
+        }
+        return prev; // no state update
+      });
     };
 
     window.addEventListener("resize", resizeHandler);

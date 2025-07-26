@@ -4,6 +4,7 @@
   This should come after @config.
 */
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
 
 body {
   @apply bg-background text-white;
@@ -11,12 +12,60 @@ body {
 
 @layer components {
   .btn {
-    @apply bg-secondary mx-auto block w-[80%] px-2 py-0.5 rounded hover:bg-accent hover:text-black text-center;
+    @apply bg-secondary mx-auto block w-[80%] px-2 py-0.5 rounded hover:bg-accent hover:text-black text-center cursor-pointer;
   }
 
   .sidenav {
-    @apply shrink-0 -translate-x-full w-3/5 h-full max-w-sm bg-primary fixed transition-transform duration-750 ease-in-out sm:relative;
+    @apply shrink-0 basis-1/3 z-10 w-3/5 h-full max-w-sm bg-primary fixed -translate-x-full transition-transform duration-750 ease-in-out sm:relative sm:w-2/5;
     &.active {
+      @apply translate-x-0;
+    }
+  }
+
+  .main {
+    @apply grow-1 basis-2/3 flex flex-col w-3/5 max-h-dvh transition-[margin-left] duration-750 ease-in-out;
+  }
+
+  .header {
+    @apply w-full relative flex p-2.5 pl-4 z-0;
+    &::after {
+      @apply w-full h-full content-[''] absolute inset-0 bg-background shadow-lg -z-5;
+    }
+  }
+
+  .option-btns-group {
+    @apply bg-slate-600/25 backdrop-blur-xs rounded-bl-lg  p-3 space-y-1.5 absolute right-0 top-full -translate-y-full transition-transform duration-500 ease-in-out -z-10  sm:static sm:flex-1/5 sm:px-2 sm:shrink-0 sm:bg-transparent sm:flex sm:justify-end sm:gap-4 sm:p-0 sm:space-y-0 sm:z-0 sm:translate-y-0;
+    &.active {
+      @apply translate-y-0;
+    }
+  }
+
+  .input {
+    @apply border border-gray-600 rounded-md px-2 h-8 focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+
+  /* styles.css or inside a component's style tag */
+  /* .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  } */
+  /* .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: #a0aec0; /* Tailwind gray-400 */
+  /* border-radius: 4px;
+  } */
+  /* .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background-color: red;
+  } */
+  /* .scrollbar-custom::-webkit-scrollbar-track {
+    background-color: #edf2f7;
+  } */
+
+  .toast-container {
+    @apply w-4/5 text-center py-2 z-20 fixed right-1/2 top-0 translate-x-1/2 bg-slate-400/50;
+  }
+
+  .toast {
+    @apply w-full mx-auto py-1 px-2 rounded bg-red-600 translate-x-[120%] transition-transform duration-200 ease-in;
+    &.show {
       @apply translate-x-0;
     }
   }
